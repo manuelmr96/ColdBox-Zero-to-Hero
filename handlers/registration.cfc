@@ -47,16 +47,22 @@ component{
 	function create( event, rc, prc ) {
 		//insert the user
 		if( !userService.validCreateUser( rc.email, rc.username ) ){
-			var generatedKey = userService.create( rc.email, rc.username, rc.password );
+			var user = populateModel( getInstance( "User" ) );
+			userService.create( user );
 
-			messageBox.success( "The user #encodeForHTML( rc.username )# with id: #generatedKey# was created!" );
+			messageBox.success( "The user #encodeForHTML( rc.username )# with id: #user.getID()# was created!" );
 		}else{
 			messageBox.error( "The user #encodeForHTML( rc.username )# or eamil #encodeForHTML(rc.email)# is already exist in the database!" );
 		}
 		
 		relocate( uri = "/" );
 	}
-
+	// create / save User
+	function create( event, rc, prc ) {
+		var user = populateModel( getInstance( "User" ) );
+		userService.create( user );
+		relocate( uri = "/login" );
+	}
 
 	
 }

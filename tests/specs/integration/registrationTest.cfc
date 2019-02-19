@@ -69,7 +69,7 @@ component extends="tests.resources.BaseIntegrationSpec"{
 					"passwordConfirmation" = "mypass1234"
 				} );
 
-				expect( event.getValue( "relocate_URI", "" ) ).toBe( "/" );
+				expect( event.getValue( "relocate_URI", "" ) ).toBe( "/login" );
 
 				var users = query.from( "users" )
 					.where( "email", "=", "testadmin@ortussolutions.com" )	

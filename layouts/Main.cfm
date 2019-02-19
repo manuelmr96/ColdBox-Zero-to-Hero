@@ -20,11 +20,17 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto">
+                <cfif auth().isLoggedIn()>
+                    <form method="POST" action="#event.buildLink( "logout" )#">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button type="submit" class="btn btn-link nav-link">Log Out</button>
+                    </form>
+                <cfelse>
                     <a href="#event.buildLink( "registration.new" )#" class="nav-link">Register</a>
-                </ul>
-            </div>
+                    <a href="#event.buildLink( "login" )#" class="nav-link">Log In</a>
+                </cfif>
+            </ul>
         </nav>
         <main role="main" class="container"> 
              #getInstance( "messagebox@cbMessageBox" ).renderit()#

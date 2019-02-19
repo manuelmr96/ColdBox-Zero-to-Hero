@@ -75,6 +75,13 @@
         //Register interceptors as an array, we need order
         interceptors = [
         ];
+
+        
+        moduleSettings = {
+            "cbauth" = {
+                "userServiceClass" = "UserService"
+            }
+        };
         /*
         // module setting overrides
         moduleSettings = {

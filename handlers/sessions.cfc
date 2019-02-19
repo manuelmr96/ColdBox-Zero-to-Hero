@@ -3,6 +3,10 @@
 */
 component{
 	
+	property name="auth" inject="authenticationService@cbauth";
+	property name="messageBox" 	inject="messageBox@cbmessagebox";
+
+
 	// OPTIONAL HANDLER PROPERTIES
 	this.prehandler_only 	= "";
 	this.prehandler_except 	= "";
@@ -42,14 +46,24 @@ component{
 	* create
 	*/
 	function create( event, rc, prc ){
-		event.setView( "sessions/create" );
+		try {
+			auth.authenticate( rc.username, rc.password )
+			messagebox.success( "Welcome back #rc.username#" );
+            return relocate( uri = "/" );
+        }
+        catch ( InvalidCredentials e ) {
+            messagebox.warn( e.message );
+            return relocate( uri = "/login" );
+        }
 	}
 
 	/**
 	* delete
 	*/
 	function delete( event, rc, prc ){
-		event.setView( "sessions/delete" );
+		auth.logout();
+		messagebox.info( "Bye Bye! See ya soon!" );
+        return relocate( uri = "/" );
 	}
 
 
