@@ -2,9 +2,6 @@
 * I am a new handler
 */
 component{
-
-	property name="userService"		inject="UserService";
-	property name="messageBox" 	inject="messageBox@cbmessagebox";
 	
 	// OPTIONAL HANDLER PROPERTIES
 	this.prehandler_only 	= "";
@@ -38,23 +35,21 @@ component{
 	* new
 	*/
 	function new( event, rc, prc ){
-		event.setView( "registration/new" );
+		event.setView( "sessions/new" );
 	}
 
 	/**
 	* create
 	*/
-	function create( event, rc, prc ) {
-		//insert the user
-		if( !userService.validCreateUser( rc.email, rc.username ) ){
-			var generatedKey = userService.create( rc.email, rc.username, rc.password );
+	function create( event, rc, prc ){
+		event.setView( "sessions/create" );
+	}
 
-			messageBox.success( "The user #encodeForHTML( rc.username )# with id: #generatedKey# was created!" );
-		}else{
-			messageBox.error( "The user #encodeForHTML( rc.username )# or eamil #encodeForHTML(rc.email)# is already exist in the database!" );
-		}
-		
-		relocate( uri = "/" );
+	/**
+	* delete
+	*/
+	function delete( event, rc, prc ){
+		event.setView( "sessions/delete" );
 	}
 
 

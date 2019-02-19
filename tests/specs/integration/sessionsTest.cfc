@@ -14,22 +14,49 @@
 *	* eventArguments : The struct of args to pass to the event
 *	* renderResults : Render back the results of the event
 *******************************************************************************/
-component extends="tests.resources.BaseIntegrationSpec"{
+component extends="coldbox.system.testing.BaseTestCase" appMapping="/"{
+	
+	/*********************************** LIFE CYCLE Methods ***********************************/
 
+	function beforeAll(){
+		super.beforeAll();
+		// do your own stuff here
+	}
+
+	function afterAll(){
+		// do your own stuff here
+		super.afterAll();
+	}
+
+	/*********************************** BDD SUITES ***********************************/
+	
 	function run(){
 
-		describe( "about Suite", function(){
+		describe( "sessions Suite", function(){
 
 			beforeEach(function( currentSpec ){
 				// Setup as a new ColdBox request for this suite, VERY IMPORTANT. ELSE EVERYTHING LOOKS LIKE THE SAME REQUEST.
 				setup();
 			});
-			
-			it( "can render the about page", function(){
-                var event = GET( route="/about" );
 
-                expect( event.getRenderedContent() ).toInclude( "About Us" );
-            });
+			it( "new", function(){
+				var event = execute( event="sessions.new", renderResults=true );
+				// expectations go here.
+				expect( false ).toBeTrue();
+			});
+
+			it( "create", function(){
+				var event = execute( event="sessions.create", renderResults=true );
+				// expectations go here.
+				expect( false ).toBeTrue();
+			});
+
+			it( "delete", function(){
+				var event = execute( event="sessions.delete", renderResults=true );
+				// expectations go here.
+				expect( false ).toBeTrue();
+			});
+
 		
 		});
 

@@ -18,7 +18,7 @@ component extends="coldbox.system.testing.BaseTestCase" {
             migrationService.setMigrationsDirectory( "/root/resources/database/migrations" );
 	        migrationService.setDefaultGrammar( "MySQLGrammar" );
             migrationService.setDatasource( "soapbox" );
-            migrationService.runAllMigrations( "down" );
+            // migrationService.runAllMigrations( "down" );
             migrationService.runAllMigrations( "up" );
             request.migrationsRan = true;
         }

@@ -15,8 +15,27 @@
 *	* renderResults : Render back the results of the event
 *******************************************************************************/
 component extends="tests.resources.BaseIntegrationSpec"{
+		
+	property name="query" 		inject="provider:QueryBuilder@qb";
 	
+	/*********************************** BDD SUITES ***********************************/
+	function beforeAll(){
+		super.beforeAll();
+		query.from( "users" )
+			.insert( values = {
+				username : "testuser",
+				email : "testuser@tests.com",
+				password : ( "password" )
+			} );
+	}
 
+	function afterAll(){
+		super.afterAll();
+		query.from( "users" )
+			.where( "username", "=", "testuser" )
+			.delete();
+	}
+	
 	/*********************************** BDD SUITES ***********************************/
 	
 	function run(){
@@ -52,7 +71,9 @@ component extends="tests.resources.BaseIntegrationSpec"{
 
 				expect( event.getValue( "relocate_URI", "" ) ).toBe( "/" );
 
-				var users = query.from( "users" ).get();
+				var users = query.from( "users" )
+					.where( "email", "=", "testadmin@ortussolutions.com" )	
+					.get();
 				expect( users ).toBeArray();
 				expect( users[ 1 ].username ).toBe( "testadmin" );
 			} );
