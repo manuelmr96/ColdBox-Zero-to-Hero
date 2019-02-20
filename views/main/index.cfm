@@ -19,7 +19,11 @@
 		</div>
 	</div>
 </div>
-
+<h1>System Users</h1>
+	#html.table(
+		data = prc.aUsers,
+		class = "table table-hover table-striped"
+	)#
 <div class="row">
 	<div class="col-lg-9">
 

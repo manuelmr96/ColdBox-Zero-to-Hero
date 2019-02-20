@@ -9,7 +9,8 @@ component singleton accessors="true"{
     // To create new User instances
     property name="wirebox" inject="wirebox";
     // For encryption
-    property name="bcrypt" inject="@BCrypt";
+	property name="bcrypt" inject="@BCrypt";
+	property name="authenticationService" inject="AuthenticationService@cbauth";
 	
 
 	/**
@@ -83,6 +84,10 @@ component singleton accessors="true"{
 		}
 		
         return bcrypt.checkPassword( password, oUser.getPassword() );
-    }
+	}
+	
+	function userValidator( rule, controller ) {
+		return authenticationService.isLoggedIn();
+	}
 
 }

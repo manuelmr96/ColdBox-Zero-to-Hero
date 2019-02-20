@@ -16,24 +16,6 @@ component{
 	this.aroundHandler_except = "";
 	// REST Allowed HTTP Methods Ex: this.allowedMethods = {delete='POST,DELETE',index='GET'}
 	this.allowedMethods = {};
-	
-	/**
-	IMPLICIT FUNCTIONS: Uncomment to use
-	function preHandler( event, rc, prc, action, eventArguments ){
-	}
-	function postHandler( event, rc, prc, action, eventArguments ){
-	}
-	function aroundHandler( event, rc, prc, targetAction, eventArguments ){
-		// executed targeted action
-		arguments.targetAction( event );
-	}
-	function onMissingAction( event, rc, prc, missingAction, eventArguments ){
-	}
-	function onError( event, rc, prc, faultAction, exception, eventArguments ){
-	}
-	function onInvalidHTTPMethod( event, rc, prc, faultAction, eventArguments ){
-	}
-	*/
 		
 	/**
 	* new
@@ -47,7 +29,8 @@ component{
 	*/
 	function create( event, rc, prc ){
 		try {
-			auth.authenticate( rc.username, rc.password )
+			auth.authenticate( rc.username, rc.password );
+			
 			messagebox.success( "Welcome back #rc.username#" );
             return relocate( uri = "/" );
         }

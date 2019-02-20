@@ -49,7 +49,7 @@ component{
 		if( !userService.validCreateUser( rc.email, rc.username ) ){
 			var user = populateModel( getInstance( "User" ) );
 			userService.create( user );
-
+			relocate( uri = "/login" );
 			messageBox.success( "The user #encodeForHTML( rc.username )# with id: #user.getID()# was created!" );
 		}else{
 			messageBox.error( "The user #encodeForHTML( rc.username )# or eamil #encodeForHTML(rc.email)# is already exist in the database!" );

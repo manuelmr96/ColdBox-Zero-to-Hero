@@ -21,6 +21,7 @@ component extends="tests.resources.BaseIntegrationSpec"{
 	/*********************************** BDD SUITES ***********************************/
 	function beforeAll(){
 		super.beforeAll();
+		clearUser();
 		query.from( "users" )
 			.insert( values = {
 				username : "testuser",
@@ -31,6 +32,10 @@ component extends="tests.resources.BaseIntegrationSpec"{
 
 	function afterAll(){
 		super.afterAll();
+		clearUser();
+		
+	}
+	function clearUser(){
 		query.from( "users" )
 			.where( "username", "=", "testuser" )
 			.delete();

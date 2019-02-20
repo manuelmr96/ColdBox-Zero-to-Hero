@@ -3,7 +3,9 @@ component{
 	// config/Router.cfc
 	function configure(){
 		setFullRewrites( true );
+
 		resources("registration");
+		resources( "rants" );
 		
 		route( "/login" )
 			.withAction( { "POST" = "create", "GET" = "new" } )

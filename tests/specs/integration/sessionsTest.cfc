@@ -53,7 +53,7 @@ component extends="tests.resources.BaseIntegrationSpec" appMapping="/"{
 			});
 
 			it( "can logout a user", function(){
-				var event = delete( route="logout" );
+				var event = delete( route="/logout" );
 				// expectations go here.
 				expect( auth.isLoggedIn() ).toBeFalse();
 				expect( event.getValue( "relocate_URI") ).toBe( "/" );

@@ -11,27 +11,35 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main-navbar">
-            <a class="navbar-brand" href="#event.buildLink( url = "/" )#">
-                <i class="fas fa-bullhorn mr-2"></i>
-                SoapBox
-			</a>
-			<a class="navbar-brand mb-0" href="#event.buildLink( 'about/index' )#">About</a>			
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <ul class="navbar-nav ml-auto">
-                <cfif auth().isLoggedIn()>
-                    <form method="POST" action="#event.buildLink( "logout" )#">
-                        <input type="hidden" name="_method" value="DELETE" />
-                        <button type="submit" class="btn btn-link nav-link">Log Out</button>
-                    </form>
-                <cfelse>
-                    <a href="#event.buildLink( "registration.new" )#" class="nav-link">Register</a>
-                    <a href="#event.buildLink( "login" )#" class="nav-link">Log In</a>
-                </cfif>
-            </ul>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top main-navbar">
+        <a class="navbar-brand" href="#event.buildLink( url = "/" )#">
+            <i class="fas fa-bullhorn mr-2"></i>
+            SoapBox
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="##navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <cfif auth().isLoggedIn()>
+        <ul class="navbar-nav">
+            <li><a href="#event.buildLink( "rants.new" )#" class="nav-link">Start a Rant</a></li>
+        </ul>
+        </cfif>
+
+        <ul class="navbar-nav ml-auto">
+            <cfif auth().isLoggedIn()>
+                <form method="POST" action="#event.buildLink( "logout" )#">
+                    <input type="hidden" name="_method" value="DELETE" />
+                    <button type="submit" class="btn btn-link nav-link">Log Out</button>
+                </form>
+            <cfelse>
+                <a href="#event.buildLink( "registration.new" )#" class="nav-link">Register</a>
+                <a href="#event.buildLink( "login" )#" class="nav-link">Log In</a>
+            </cfif>
+        </ul>
+
+    </nav>
         <main role="main" class="container"> 
              #getInstance( "messagebox@cbMessageBox" ).renderit()#
             #renderView()#
